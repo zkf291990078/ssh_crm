@@ -8,9 +8,28 @@
 	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd ">
 
 
-	<bean name="userAction" class="com.anywell.web.UserAction">
-	<property name="userService" ref="userService"></property>
+	<bean name="userAction" class="com.anywell.web.UserAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
 	</bean>
 	<bean name="userService" class="com.anywell.service.impl.UserServiceImpl"></bean>
 
+	<!-- <bean name="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"> 
+		<property name="configLocation" value="classpath:hibernate.cfg.xml"></property> 
+		</bean> -->
+	<bean name="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="hibernateProperties">
+			<props >
+				<prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+				<prop key="hibernate.connection.url">jdbc:mysql:///crm_32?Unicode=true&amp;characterEncoding=UTF-8</prop>
+				<prop key="hibernate.connection.username">root</prop>
+				<prop key="hibernate.connection.password">root</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+		<property name="mappingDirectoryLocations" value="classpath:com/anywell/domain"></property>
+	</bean>
 </beans>
