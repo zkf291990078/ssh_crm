@@ -13,7 +13,7 @@
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	<!-- <tx:advice id="txAdvice" transaction-manager="transactionManager">
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="save*" isolation="REPEATABLE_READ"
 				propagation="REQUIRED" read-only="false" />
@@ -38,8 +38,9 @@
 			expression="execution(* com.anywell.service.impl.*ServiceImpl.*(..))"
 			id="txPc" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPc" />
-	</aop:config> -->
+	</aop:config>
 	<tx:annotation-driven transaction-manager="transactionManager" />
+
 	<bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="jdbcUrl" value="${jdbc.url}"></property>
 		<property name="driverClass" value="${jdbc.driverClass}"></property>
@@ -47,14 +48,26 @@
 		<property name="password" value="${jdbc.password}"></property>
 	</bean>
 
-
+	<!-- Action配置 -->
 	<bean name="userAction" class="com.anywell.web.UserAction" scope="prototype">
 		<property name="userService" ref="userService"></property>
 	</bean>
+	<bean name="customerAction" class="com.anywell.web.CustomerAction"
+		scope="prototype">
+		<property name="customerService" ref="customerService"></property>
+	</bean>
+	<!--Service 配置 -->
 	<bean name="userService" class="com.anywell.service.impl.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
+	<bean name="customerService" class="com.anywell.service.impl.CustomerServiceImpl">
+		<property name="customerDao" ref="customerDao"></property>
+	</bean>
+	<!-- Dao配置 -->
 	<bean name="userDao" class="com.anywell.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="customerDao" class="com.anywell.dao.impl.CustomerDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<!-- <bean name="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"> 
@@ -65,9 +78,10 @@
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="hibernateProperties">
 			<props>
-				<!-- prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop> 
-					<prop key="hibernate.connection.url">jdbc:mysql:///crm_32?Unicode=true&amp;characterEncoding=UTF-8</prop> 
-					<prop key="hibernate.connection.username">root</prop> <prop key="hibernate.connection.password">root</prop -->
+				<!-- <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop> 
+					<prop key="hibernate.connection.url">jdbc:mysql:///crm_32?Unicode=true&amp;characterEncoding=UTF-8 
+					</prop> <prop key="hibernate.connection.username">root</prop> <prop key="hibernate.connection.password">root</prop> -->
+
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>

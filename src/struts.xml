@@ -14,6 +14,10 @@
 			<result name="toHome">/index.htm</result>
 			<result name="error">/login.jsp</result>
 		</action>
+		<action name="CustomerAction_*" class="customerAction" method="{1}">
+			<result name="toList">/jsp/customer/list.jsp</result>
+
+		</action>
 	</package>
 
 </struts>
