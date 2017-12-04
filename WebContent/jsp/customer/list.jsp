@@ -121,7 +121,7 @@ function changePageSize(pageSize){
 													<TD><s:property value="#customer.cust_phone" /></TD>
 													<TD><s:property value="#customer.cust_mobile" /></TD>
 													<TD><a
-														href="${pageContext.request.contextPath }/CustomerAction?<s:property value="#customer.cust_id"/>">修改</a>
+														href="${pageContext.request.contextPath }/CustomerAction_toEdit?cust_id=<s:property value="#customer.cust_id"/>">修改</a>
 														&nbsp;&nbsp; <a
 														href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
 													</TD>

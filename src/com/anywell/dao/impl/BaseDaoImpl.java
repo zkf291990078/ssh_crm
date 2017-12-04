@@ -23,7 +23,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 	@Override
 	public void save(T t) {
 		// TODO Auto-generated method stub
-		getHibernateTemplate().saveOrUpdate(t);
+		getHibernateTemplate().save(t);
 	}
 
 	@Override
@@ -70,6 +70,12 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 	public List<T> getPageList(DetachedCriteria dc, Integer start, Integer pageSize) {
 		// TODO Auto-generated method stub
 		return (List<T>) getHibernateTemplate().findByCriteria(dc, start, pageSize);
+	}
+
+	@Override
+	public void saveOrUpdate(T t) {
+		// TODO Auto-generated method stub
+		getHibernateTemplate().saveOrUpdate(t);
 	}
 
 }
