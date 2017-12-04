@@ -23,7 +23,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 	@Override
 	public void save(T t) {
 		// TODO Auto-generated method stub
-		getHibernateTemplate().save(t);
+		getHibernateTemplate().saveOrUpdate(t);
 	}
 
 	@Override

@@ -115,13 +115,13 @@ function changePageSize(pageSize){
 												<TR
 													style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
 													<TD><s:property value="#customer.cust_name" /></TD>
-													<TD><s:property value="#customer.cust_level" /></TD>
-													<TD><s:property value="#customer.cust_source" /></TD>
+													<TD><s:property value="#customer.cust_level.dict_item_name" /></TD>
+													<TD><s:property value="#customer.cust_source.dict_item_name" /></TD>
 													<TD><s:property value="#customer.cust_linkman" /></TD>
 													<TD><s:property value="#customer.cust_phone" /></TD>
 													<TD><s:property value="#customer.cust_mobile" /></TD>
 													<TD><a
-														href="${pageContext.request.contextPath }/customerServlet?method=edit&custId=${customer.cust_id}">修改</a>
+														href="${pageContext.request.contextPath }/CustomerAction?<s:property value="#customer.cust_id"/>">修改</a>
 														&nbsp;&nbsp; <a
 														href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
 													</TD>

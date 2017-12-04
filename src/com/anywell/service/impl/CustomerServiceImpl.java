@@ -29,4 +29,16 @@ public class CustomerServiceImpl implements CustomerService {
 		this.customerDao = customerDao;
 	}
 
+	@Override
+	public void save(Customer customer) {
+		// TODO Auto-generated method stub
+		customerDao.save(customer);
+	}
+
+	@Override
+	public Customer getById(Long cust_id) {
+		// TODO Auto-generated method stub
+		return customerDao.getById(cust_id);
+	}
+
 }
