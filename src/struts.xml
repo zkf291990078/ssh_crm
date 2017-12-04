@@ -18,6 +18,9 @@
 			<result name="toList">/jsp/customer/list.jsp</result>
 
 		</action>
+		<action name="BaseDictAction" class="baseDictAction" >
+
+		</action>
 	</package>
 
 </struts>
