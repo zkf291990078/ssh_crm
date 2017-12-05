@@ -62,6 +62,10 @@
 		scope="prototype">
 		<property name="baseDictService" ref="baseDictService"></property>
 	</bean>
+	<bean name="linkManAction" class="com.anywell.web.LinkManAction"
+		scope="prototype">
+		<property name="linkManService" ref="linkManService"></property>
+	</bean>
 	<!--Service 配置 -->
 	<bean name="userService" class="com.anywell.service.impl.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
@@ -72,6 +76,9 @@
 	<bean name="baseDictService" class="com.anywell.service.impl.BaseDictServiceImpl">
 		<property name="baseDictDao" ref="baseDictDao"></property>
 	</bean>
+		<bean name="linkManService" class="com.anywell.service.impl.LinkManServiceImpl">
+		<property name="linkManDao" ref="linkManDao"></property>
+	</bean>
 	<!-- Dao配置 -->
 	<bean name="userDao" class="com.anywell.dao.impl.UserDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
@@ -80,6 +87,9 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean name="baseDictDao" class="com.anywell.dao.impl.BaseDictDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="linkManDao" class="com.anywell.dao.impl.LinkManDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<!-- <bean name="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"> 

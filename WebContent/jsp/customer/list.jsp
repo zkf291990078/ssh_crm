@@ -27,6 +27,19 @@ function changePageSize(pageSize){
 //2 提交表单
 	$("#pageForm").submit();
 };
+
+function selectCustomer(cust_id,cust_name){
+	//获得添加页面的window对象
+	var win = window.opener;
+	//获得添加页面的document对象
+	var doc = win.document;
+	//获得隐藏域,和 文本框,并赋值
+	doc.getElementById("cust_id").value=cust_id;
+	doc.getElementById("cust_name").value=cust_name;
+	//关闭当前窗口
+	window.close();
+	
+};
 </SCRIPT>
 
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
@@ -70,21 +83,25 @@ function changePageSize(pageSize){
 						<TBODY>
 							<TR>
 								<TD height=25>
-									<FORM  name="customerForm" id="pageForm"
+									<FORM name="customerForm" id="pageForm"
 										action="${pageContext.request.contextPath }/CustomerAction_list"
 										method=post>
 										<TABLE cellSpacing=0 cellPadding=2 border=0>
 											<TBODY>
 												<TR>
 													<TD>客户名称：</TD>
-													<TD><INPUT type="hidden" name="pageSize" id="pageSizeInput"
+													<TD><INPUT type="hidden" name="pageSize"
+														id="pageSizeInput"
 														value="<s:property value="#pageBean.pageSize"/>" /></TD>
-													<TD><INPUT type="hidden" name="currentPage" id="currentPageInput"
+													<TD><INPUT type="hidden" name="currentPage"
+														id="currentPageInput"
 														value="<s:property value="#pageBean.currentPage"/>" /></TD>
 													<TD><INPUT class=textbox id=sChannel2
 														style="WIDTH: 80px" maxLength=50 name="cust_name"
 														value="${param.cust_name}"></TD>
-
+													<!-- 放置是否需要选择的标记参数 -->
+													<input type="hidden" name="select"
+														value="<s:property value="#parameters.select" />" />
 													<TD><INPUT class=button id=sButton2 type=submit
 														value=" 筛选 " name=sButton2></TD>
 												</TR>
@@ -115,16 +132,22 @@ function changePageSize(pageSize){
 												<TR
 													style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
 													<TD><s:property value="#customer.cust_name" /></TD>
-													<TD><s:property value="#customer.cust_level.dict_item_name" /></TD>
-													<TD><s:property value="#customer.cust_source.dict_item_name" /></TD>
+													<TD><s:property
+															value="#customer.cust_level.dict_item_name" /></TD>
+													<TD><s:property
+															value="#customer.cust_source.dict_item_name" /></TD>
 													<TD><s:property value="#customer.cust_linkman" /></TD>
 													<TD><s:property value="#customer.cust_phone" /></TD>
 													<TD><s:property value="#customer.cust_mobile" /></TD>
-													<TD><a
-														href="${pageContext.request.contextPath }/CustomerAction_toEdit?cust_id=<s:property value="#customer.cust_id"/>">修改</a>
+													<TD><s:if test="#parameters.select==null">
+															<a
+																href="${pageContext.request.contextPath }/CustomerAction_toEdit?cust_id=<s:property value="#customer.cust_id"/>">修改</a>
 														&nbsp;&nbsp; <a
-														href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
-													</TD>
+																href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
+														</s:if> <s:else>
+															<input type="button" value="选择"
+																onclick="selectCustomer(<s:property value="#customer.cust_id"/>,'<s:property value="#customer.cust_name"/>')" />
+														</s:else></TD>
 												</TR>
 
 											</s:iterator>
