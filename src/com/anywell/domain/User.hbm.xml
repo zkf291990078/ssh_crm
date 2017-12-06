@@ -2,15 +2,18 @@
 <!DOCTYPE hibernate-mapping PUBLIC 
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<hibernate-mapping package="com.anywell.domain" >
-	<class name="User" table="sys_user" >
-		<id name="user_id"  >
+<hibernate-mapping package="com.anywell.domain">
+	<class name="User" table="sys_user">
+		<id name="user_id">
 			<generator class="native"></generator>
 		</id>
-		<property name="user_code"  ></property>
-		<property name="user_name"  ></property>
-		<property name="user_password"  ></property>
-		<property name="user_state"  ></property>
-	
+		<property name="user_code"></property>
+		<property name="user_name"></property>
+		<property name="user_password"></property>
+		<property name="user_state"></property>
+		<set name="saleVisits">
+			<key column="visit_cust_id"></key>
+			<one-to-many class="SaleVisit" />
+		</set>
 	</class>
 </hibernate-mapping>

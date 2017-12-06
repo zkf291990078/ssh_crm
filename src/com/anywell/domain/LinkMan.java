@@ -1,4 +1,10 @@
 package com.anywell.domain;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.aspectj.weaver.patterns.HasMemberTypePatternFinder;
+
 //联系人实体
 public class LinkMan {
 		/*
@@ -34,7 +40,6 @@ public class LinkMan {
 	//----------------------------------------------
 	//不与数据库中的列对应,只为了接收表单参数
 	private Long cust_id;
-	
 	
 	
 	public Long getCust_id() {

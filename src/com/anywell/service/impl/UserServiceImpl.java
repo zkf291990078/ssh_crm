@@ -30,6 +30,10 @@ public class UserServiceImpl implements UserService {
 	@Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRED, readOnly = false)
 	public void save(User u) {
 		// TODO Auto-generated method stub
+		User exitUser = userDao.getUserByCode(u.getUser_code());
+		if (exitUser != null) {
+			throw new RuntimeException("用户已存在");
+		}
 		userDao.save(u);
 	}
 

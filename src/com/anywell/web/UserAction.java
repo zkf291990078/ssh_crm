@@ -20,6 +20,18 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		ActionContext.getContext().getSession().put("user", u);
 		return "toHome";
 	}
+	
+	public String regist() throws Exception {
+		// TODO Auto-generated method stub
+		try {
+			userService.save(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			ActionContext.getContext().put("error", e.getMessage());
+			return "regist";
+		}
+		return "login";
+	}
 
 	@Override
 	public User getModel() {

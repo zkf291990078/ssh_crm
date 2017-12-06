@@ -66,6 +66,10 @@
 		scope="prototype">
 		<property name="linkManService" ref="linkManService"></property>
 	</bean>
+	<bean name="SaleVisitAction" class="com.anywell.web.SaleVisitAction"
+		scope="prototype">
+		<property name="saleVisitService" ref="saleVisitService"></property>
+	</bean>
 	<!--Service 配置 -->
 	<bean name="userService" class="com.anywell.service.impl.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
@@ -76,8 +80,11 @@
 	<bean name="baseDictService" class="com.anywell.service.impl.BaseDictServiceImpl">
 		<property name="baseDictDao" ref="baseDictDao"></property>
 	</bean>
-		<bean name="linkManService" class="com.anywell.service.impl.LinkManServiceImpl">
+	<bean name="linkManService" class="com.anywell.service.impl.LinkManServiceImpl">
 		<property name="linkManDao" ref="linkManDao"></property>
+	</bean>
+	<bean name="saleVisitService" class="com.anywell.service.impl.SaleVisitServiceImpl">
+		<property name="saleVisitDao" ref="saleVisitDao"></property>
 	</bean>
 	<!-- Dao配置 -->
 	<bean name="userDao" class="com.anywell.dao.impl.UserDaoImpl">
@@ -90,6 +97,9 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean name="linkManDao" class="com.anywell.dao.impl.LinkManDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="saleVisitDao" class="com.anywell.dao.impl.SaleVisitDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<!-- <bean name="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"> 
