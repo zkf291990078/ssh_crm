@@ -65,12 +65,18 @@ public class SaleVisit {
 	}
 
 	public String getVisit_time_s() {
-		return "";// formatTime(getVisit_time(), "yyyy-MM-dd");
+		if (visit_time == null) {
+			return "";
+		}
+		return formatTime(getVisit_time(), "yyyy-MM-dd");
 	}
 
 	//
 	public String getVisit_nexttime_s() {
-		return "";// formatTime(getVisit_nexttime(), "yyyy-MM-dd");
+		if (visit_nexttime == null) {
+			return "";
+		}
+		return formatTime(getVisit_nexttime(), "yyyy-MM-dd");
 	}
 
 	private static String formatTime(Date date, String format) {

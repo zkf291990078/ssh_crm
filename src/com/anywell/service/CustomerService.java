@@ -15,4 +15,6 @@ public interface CustomerService {
 
 	Customer getById(Long cust_id);
 
+	List<Object[]> getIndustryCount();
+
 }

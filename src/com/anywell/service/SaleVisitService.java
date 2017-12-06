@@ -13,4 +13,6 @@ public interface SaleVisitService {
 
 	SaleVisit getById(String visit_id);
 
+	void add(SaleVisit saleVisit);
+
 }

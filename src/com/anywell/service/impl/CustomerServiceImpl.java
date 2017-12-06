@@ -42,4 +42,10 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDao.getById(cust_id);
 	}
 
+	@Override
+	public List<Object[]> getIndustryCount() {
+		// TODO Auto-generated method stub
+		return customerDao.getIndustryCount();
+	}
+
 }

@@ -40,4 +40,10 @@ public class SaleVisitServiceImpl implements SaleVisitService {
 		return saleVisitDao.getById(visit_id);
 	}
 
+	@Override
+	public void add(SaleVisit saleVisit) {
+		// TODO Auto-generated method stub
+		saleVisitDao.save(saleVisit);
+	}
+
 }

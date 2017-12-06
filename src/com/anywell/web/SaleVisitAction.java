@@ -28,7 +28,12 @@ public class SaleVisitAction extends ActionSupport implements ModelDriven<SaleVi
 		User u = (User) ActionContext.getContext().getSession().get("user");
 		saleVisit.setUser(u);
 		// 1 调用Service保存客户拜访记录
-		saleVisitService.save(saleVisit);
+		if (StringUtils.isNotBlank(saleVisit.getVisit_id())) {
+			saleVisitService.save(saleVisit);
+
+		} else {
+			saleVisitService.add(saleVisit);
+		}
 
 		return "toList";
 	}
@@ -45,6 +50,7 @@ public class SaleVisitAction extends ActionSupport implements ModelDriven<SaleVi
 		ActionContext.getContext().put("pageBean", pageBean);
 		return "list";
 	}
+
 	public String toEdit() throws Exception {
 		// TODO Auto-generated method stub
 		// 1调用Service根据id获得客户对象
@@ -53,7 +59,6 @@ public class SaleVisitAction extends ActionSupport implements ModelDriven<SaleVi
 		ActionContext.getContext().put("saleVisit", s);
 		return "edit";
 	}
-
 
 	@Override
 	public SaleVisit getModel() {

@@ -1,6 +1,7 @@
 package com.anywell.web;
 
 import java.io.File;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
@@ -12,7 +13,6 @@ import com.anywell.service.CustomerService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
-import com.sun.org.apache.regexp.internal.recompile;
 
 public class CustomerAction extends ActionSupport implements ModelDriven<Customer> {
 
@@ -28,6 +28,12 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	private String photoFileName;
 	// 在提交键名后加上固定后缀ContentType,文件MIME类型会自动封装到属性中
 	private String photoContentType;
+
+	public String count() throws Exception {
+		List<Object[]> list = customerService.getIndustryCount();
+		ActionContext.getContext().put("list", list);
+		return "count";
+	}
 
 	public String list() throws Exception {
 		// TODO Auto-generated method stub
